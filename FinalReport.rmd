@@ -20,17 +20,63 @@ DrugGuys = filter(abac,Ivdrug=="user")
 ```
 
 # Introduction
-We will ,ake columsd for the LGBT statistics.  We will have the chisq, fisher and a barchart.  The first will include the treatment for the female.  The second will be the one for the male.
-<!--In this section you explain what you are trying to show.  Where did the data come from?  What is the research or other question you are trying to answer?.  If you skimp in this section expect to be marked down in your grade. Paint a picture of the project a couple of paragraphs is expected!-->
 
-A new  preventative aides (abacavirinol) is under test in clinical trials. Analyze the effectiveness of this drug across the board. Consider population subgroups by gender, drug use, and sexual orientation. Finish this!
+<!--In this section you explain what you are trying to show.  Where did the data come from?  What is the research or other question you are trying to answer?.  If you skimp in this section expect to be marked down in your grade. Paint a picture of the project a couple of paragraphs is expected!-->
+A new  preventative aides (abacavirinol) is under test in clinical trials. Analyze the effectiveness of this drug across the board. Consider population subgroups by gender, drug use, and sexual orientation. We will run various tests for each group in order to see if the drug works in order to prevent AIDS. There are various groups involved.  The groups are "abac", "DrugGuys", "Girls","Guys",and "LGBTguys". We will analyze each group in order to see if the drug actually works.
+
 
 # Methods For Everybody
 
 <!--Decide on your methods:  use "variable analysis" or other appropriate descriptors.  Make sure to choose at least one graphical method and at least one numerical method. Discuss what data manipulations may be needed for example subsetting or other binning procedures and what sort of graphical displays and inferential tools will be used!-->
+We will need to use a barchart, tabelperc, rowperc, and colperc in order to evaluate the results.We will also need to use the chisq.test(tabel1), chisqtestGC(tabel1),fisher.test(tabel1)in order to organize all of the numerical results.
+Lastly, we will use the chisq.test(tabel1), chisqtestGC(tabel1), fisher.test(tabel1) to analyze all of the inferential results. 
+
+
+#Results
+<!--Divide this section into two sub-sections:  One for your descriptive  results and one for your inferential results.!-->
+
+
+## Descriptive Results
+
+### Graphical Descriptive Results
+
+<!--Graphical results here.  Make sure to show your code.  Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too.  Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question. Bottom line is to explain the features of the graph that are relevant to conforming or departing to what is expected by your null hypothesis !-->
+
 ```{r}
-barchartGC(~infected+treatment, data = abac, type = "percent")
+barchartGC(~infected + treatment, data = abac, type = "percent")
 ```
+According to this chart, it shows that the drug did work because the people who took the placebo got a higher number of individuals who got aids, and the people who took the drug did not.
+
+
+### Numerical Descriptive Results
+
+<!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
+```{r}
+tabel1 <- xtabs(~infected + treatment, data = abac)
+rowPerc(tabel1)
+colPerc(tabel1)
+```
+According to this data,the people who took the drug had a much smaller number of people who got aids in comparision to the people who took the placebo. 
+
+## Inferential Results
+
+<!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
+
+```{r}
+chisq.test(tabel1)
+chisqtestGC(tabel1)
+fisher.test(tabel1)
+```
+According to the fisher test, and all of the other tests run, it shows that that everybo0dy would be better off taking the drug if they did not want to get aids. The hypothesis is that the drug will work in this group. The p value is rejected.
+
+
+# Discussion and Conclusion
+We will reject the hypothesis because the drug works.  After reviewing all of the data, it appeared that the indviduals who took the placebo had a higher chance of getting aids.  In conclusion, for everybody it appeared that the drug worked.
+
+#Methods For Girls
+<!--Decide on your methods:  use "variable analysis" or other appropriate descriptors.  Make sure to choose at least one graphical method and at least one numerical method. Discuss what data manipulations may be needed for example subsetting or other binning procedures and what sort of graphical displays and inferential tools will be used!-->
+We will need to use a barchart, tabelperc, rowperc, and colperc in order to evaluate the results.We will also need to use the chisq.test(tabel1), chisqtestGC(tabel1),fisher.test(tabel1)in order to organize all of the numerical results.
+Lastly, we will use the chisq.test(tabel1), chisqtestGC(tabel1), fisher.test(tabel1) to analyze all of the inferential results.
 
 
 #Results
@@ -42,36 +88,40 @@ barchartGC(~infected+treatment, data = abac, type = "percent")
 ### Graphical Descriptive Results
 
 <!--Graphical results here.  Make sure to show your code.  Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too.  Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question. Bottom line is to explain the features of the graph that are relevant to conforming or departing to what is expected by your null hypothesis !-->
-
-
-
-### Numerical Descriptive Results
-
-<!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
-```{r}
-tabel1 <- xtabs(~infected + treatment, data = abac)
-rowPerc(tabel1)
-colPerc(tabel1)
-```
-
-## Inferential Results
-
-<!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
-
-```{r}
-chisq.test(tabel1)
-chisqtestGC(tabel1)
-fisher.test(tabel1)
-```
-
-We will reject it because the drug works.
-
-#Methods For Girls
 ```{r}
 barchartGC(~infected+treatment, data = Girls, type = "percent")
 ```
-<!--Decide on your methods:  use "variable analysis" or other appropriate descriptors.  Make sure to choose at least one graphical method and at least one numerical method. Discuss what data manipulations may be needed for example subsetting or other binning procedures and what sort of graphical displays and inferential tools will be used!-->
+These results for the girls show that the drug did not work.  A majority of the girls who took the drug actually got aids in comparision to the girls who did not take anything.  A majority of the girls who did not take anything, were actually less likely to get aids.
 
+### Numerical Descriptive Results
+
+<!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
+```{r}
+tabel1 <- xtabs(~infected + treatment, data = abac)
+rowPerc(tabel1)
+colPerc(tabel1)
+```
+This shows that the drug did not work in the girls.  Again, the girls who took the placebo were actually greater in percentage and did not get aids, in comparision to the girls who did take the drug.
+## Inferential Results
+
+<!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
+
+```{r}
+chisq.test(tabel1)
+chisqtestGC(tabel1)
+fisher.test(tabel1)
+```
+
+The hypothesis here is that the drug will work.
+
+# Discussion and Conclusion
+We will reject the hypothesis becauuse the data shows that in this group, the drug did not actually work.
+
+#Methods For Guys
+
+<!--Decide on your methods:  use "variable analysis" or other appropriate descriptors.  Make sure to choose at least one graphical method and at least one numerical method. Discuss what data manipulations may be needed for example subsetting or other binning procedures and what sort of graphical displays and inferential tools will be used!-->
+We will need to use a barchart, tabelperc, rowperc, and colperc in order to evaluate the results.We will also need to use the chisq.test(tabel1), chisqtestGC(tabel1),fisher.test(tabel1)in order to organize all of the numerical results.
+Lastly, we will use the chisq.test(tabel1), chisqtestGC(tabel1), fisher.test(tabel1) to analyze all of the inferential results.
 
 
 #Results
@@ -84,50 +134,10 @@ barchartGC(~infected+treatment, data = Girls, type = "percent")
 
 <!--Graphical results here.  Make sure to show your code.  Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too.  Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question. Bottom line is to explain the features of the graph that are relevant to conforming or departing to what is expected by your null hypothesis !-->
 
-
-
-### Numerical Descriptive Results
-
-<!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
-```{r}
-tabel1 <- xtabs(~infected + treatment, data = abac)
-rowPerc(tabel1)
-colPerc(tabel1)
-```
-
-## Inferential Results
-
-<!--State hypothesis clearly.  Make sure your discussion of the inferential test covers all the aspects that the test output produces, such as test statistic, p-value etc.  Make a decision about the null hypothesis, explain the assumptions on which the selected test/procedure was based, and why the chosen procedure satisfys the assumptions and is appropriate to answer the research question!-->
-
-```{r}
-chisq.test(tabel1)
-chisqtestGC(tabel1)
-fisher.test(tabel1)
-```
-
-We will reject it because the drug works.
-
-
-#Methods For Guys
 ```{r}
 barchartGC(~infected+treatment, data = Guys, type = "percent")
 ```
-<!--Decide on your methods:  use "variable analysis" or other appropriate descriptors.  Make sure to choose at least one graphical method and at least one numerical method. Discuss what data manipulations may be needed for example subsetting or other binning procedures and what sort of graphical displays and inferential tools will be used!-->
-
-
-
-#Results
-
-<!--Divide this section into two sub-sections:  One for your descriptive  results and one for your inferential results.!-->
-
-## Descriptive Results
-
-### Graphical Descriptive Results
-
-<!--Graphical results here.  Make sure to show your code.  Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too.  Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question. Bottom line is to explain the features of the graph that are relevant to conforming or departing to what is expected by your null hypothesis !-->
-
-
-
+These results show that for the guys, the drug did work.  A majority of those who took the drug, did not get aids.  A large majority of those who did not, did get aids.
 ### Numerical Descriptive Results
 
 <!--Numerical results go here. Use the numerical results to describe the patterns if any that exist in the data as focused toward the research question!-->
@@ -136,6 +146,7 @@ tabel1 <- xtabs(~infected + treatment, data = abac)
 rowPerc(tabel1)
 colPerc(tabel1)
 ```
+The numbers show that a majority of the guys who did take the drug, were less likely to get aids.  The ones who did not, obtained higher numbers of getting aids.
 
 ## Inferential Results
 
@@ -146,17 +157,14 @@ chisq.test(tabel1)
 chisqtestGC(tabel1)
 fisher.test(tabel1)
 ```
+The fisher test shows that the p value is 0.01683, therefore it is rejected.
+# Discussion and Conclusion
+
 
 #Methods For lgbt guys
-
-```{r}
-barchartGC(~infected+treatment, data = LBGTguys, type = "percent")
-```
-
-
-
 <!--Decide on your methods:  use "variable analysis" or other appropriate descriptors.  Make sure to choose at least one graphical method and at least one numerical method. Discuss what data manipulations may be needed for example subsetting or other binning procedures and what sort of graphical displays and inferential tools will be used!-->
-
+We will need to use a barchart, tabelperc, rowperc, and colperc in order to evaluate the results.We will also need to use the chisq.test(tabel1), chisqtestGC(tabel1),fisher.test(tabel1)in order to organize all of the numerical results.
+Lastly, we will use the chisq.test(tabel1), chisqtestGC(tabel1), fisher.test(tabel1) to analyze all of the inferential results.
 
 #Results
 
@@ -167,7 +175,9 @@ barchartGC(~infected+treatment, data = LBGTguys, type = "percent")
 ### Graphical Descriptive Results
 
 <!--Graphical results here.  Make sure to show your code.  Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too.  Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question. Bottom line is to explain the features of the graph that are relevant to conforming or departing to what is expected by your null hypothesis !-->
-
+```{r}
+barchartGC(~infected+treatment, data = LBGTguys, type = "percent")
+```
 
 
 ### Numerical Descriptive Results
@@ -189,15 +199,14 @@ chisqtestGC(tabel1)
 fisher.test (tabel1)
 ```
 
-
+# Discussion and Conclusion
 
 
 #Methods For Drug Guys
 <!--Decide on your methods:  use "variable analysis" or other appropriate descriptors.  Make sure to choose at least one graphical method and at least one numerical method. Discuss what data manipulations may be needed for example subsetting or other binning procedures and what sort of graphical displays and inferential tools will be used!-->
+We will need to use a barchart, tabelperc, rowperc, and colperc in order to evaluate the results.We will also need to use the chisq.test(tabel1), chisqtestGC(tabel1),fisher.test(tabel1)in order to organize all of the numerical results.
+Lastly, we will use the chisq.test(tabel1), chisqtestGC(tabel1), fisher.test(tabel1) to analyze all of the inferential results.
 
-```{r}
-barchartGC(~infected+treatment, data = DrugGuys, type = "percent")
-```
 
 
 
@@ -210,7 +219,9 @@ barchartGC(~infected+treatment, data = DrugGuys, type = "percent")
 ### Graphical Descriptive Results
 
 <!--Graphical results here.  Make sure to show your code.  Provide appropriate labels for axes, giving units if possible, and provide a good title for the graph, too.  Use the graphical results to describe the patterns if any that exist in the data as focused toward the research question. Bottom line is to explain the features of the graph that are relevant to conforming or departing to what is expected by your null hypothesis !-->
-
+```{r}
+barchartGC(~infected+treatment, data = DrugGuys, type = "percent")
+```
 
 
 ### Numerical Descriptive Results
@@ -229,7 +240,7 @@ colPerc(tabel1)
 ```{r}
 chisq.test(tabel1)
 chisqtestGC(tabel1)
-fisher.test
+fisher.test (tabel1)
 ```
 
 
